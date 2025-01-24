@@ -1,5 +1,6 @@
 package com.flaviolcord.user.registry.api.service;
 
+import com.flaviolcord.user.registry.api.config.UserProperties;
 import com.flaviolcord.user.registry.api.dto.UserDTO;
 import com.flaviolcord.user.registry.api.exception.UserNotFoundException;
 import com.flaviolcord.user.registry.api.exception.UserRegistrationException;
@@ -8,34 +9,23 @@ import com.flaviolcord.user.registry.api.mapper.UserMapper;
 import com.flaviolcord.user.registry.api.model.User;
 import com.flaviolcord.user.registry.api.repository.UserRepository;
 import com.flaviolcord.user.registry.api.validator.UserValidator;
-import org.springframework.beans.factory.annotation.Value;
+import lombok.AllArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
+@AllArgsConstructor
 public class UserService {
+
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final UserValidator userValidator;
-
-    @Value("${user.allowed.country}")
-    private String allowedCountry;
-
-    @Value("${user.min.age}")
-    private int minAge;
-
-    public UserService(UserRepository userRepository,
-                       UserMapper userMapper,
-                       UserValidator userValidator) {
-        this.userRepository = userRepository;
-        this.userMapper = userMapper;
-        this.userValidator = userValidator;
-    }
+    private final UserProperties userProperties;
 
     public User registerUser(UserDTO userDTO) {
-        userValidator.validate(userDTO, allowedCountry, minAge);
+        userValidator.validate(userDTO, userProperties.getAllowedCountry(), userProperties.getMinAge());
 
         if (userRepository.findByUsername(userDTO.getUsername()).isPresent()) {
             throw new ValidationException("Username already exists");

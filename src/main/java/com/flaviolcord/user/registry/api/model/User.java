@@ -1,6 +1,5 @@
 package com.flaviolcord.user.registry.api.model;
 
-import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,6 +18,7 @@ import java.time.LocalDate;
 @Entity
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

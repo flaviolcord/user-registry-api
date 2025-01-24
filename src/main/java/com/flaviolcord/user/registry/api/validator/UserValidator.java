@@ -9,6 +9,7 @@ import java.time.Period;
 
 @Component
 public class UserValidator {
+
     public void validate(UserDTO userDTO, String allowedCountry, int minAge) {
         validateAge(userDTO, minAge);
         validateCountry(userDTO, allowedCountry);
