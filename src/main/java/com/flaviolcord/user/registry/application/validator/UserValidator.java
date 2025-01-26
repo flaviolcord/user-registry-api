@@ -1,30 +1,17 @@
 package com.flaviolcord.user.registry.application.validator;
 
-import com.flaviolcord.user.registry.infrastructure.dto.UserDTO;
-import com.flaviolcord.user.registry.infrastructure.exception.ValidationException;
+import com.flaviolcord.user.registry.domain.model.User;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
-import java.time.Period;
-
 @Component
+@AllArgsConstructor
 public class UserValidator {
+    private final UserInputValidator userInputValidator;
+    private final UserBusinessRuleValidator userBusinessRuleValidator;
 
-    public void validate(UserDTO userDTO, String allowedCountry, int minAge) {
-        validateAge(userDTO, minAge);
-        validateCountry(userDTO, allowedCountry);
-    }
-
-    private void validateAge(UserDTO userDTO, int minAge) {
-        int userAge = Period.between(userDTO.getBirthdate(), LocalDate.now()).getYears();
-        if (userAge < minAge) {
-            throw new ValidationException("User must be at least " + minAge + " years old.");
-        }
-    }
-
-    private void validateCountry(UserDTO userDTO, String allowedCountry) {
-        if (!allowedCountry.equalsIgnoreCase(userDTO.getCountryOfResidence())) {
-            throw new ValidationException("Only residents of " + allowedCountry + " are allowed to register.");
-        }
+    public void validate(User user) {
+        userInputValidator.validate(user);
+        userBusinessRuleValidator.validate(user);
     }
 }
