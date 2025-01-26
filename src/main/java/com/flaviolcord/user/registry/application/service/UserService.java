@@ -1,14 +1,14 @@
-package com.flaviolcord.user.registry.api.service;
+package com.flaviolcord.user.registry.application.service;
 
-import com.flaviolcord.user.registry.api.config.UserProperties;
-import com.flaviolcord.user.registry.api.dto.UserDTO;
-import com.flaviolcord.user.registry.api.exception.UserNotFoundException;
-import com.flaviolcord.user.registry.api.exception.UserRegistrationException;
-import com.flaviolcord.user.registry.api.exception.ValidationException;
-import com.flaviolcord.user.registry.api.mapper.UserMapper;
-import com.flaviolcord.user.registry.api.model.User;
-import com.flaviolcord.user.registry.api.repository.UserRepository;
-import com.flaviolcord.user.registry.api.validator.UserValidator;
+import com.flaviolcord.user.registry.infrastructure.config.UserProperties;
+import com.flaviolcord.user.registry.infrastructure.dto.UserDTO;
+import com.flaviolcord.user.registry.infrastructure.exception.UserNotFoundException;
+import com.flaviolcord.user.registry.infrastructure.exception.UserRegistrationException;
+import com.flaviolcord.user.registry.infrastructure.exception.ValidationException;
+import com.flaviolcord.user.registry.infrastructure.mapper.UserMapper;
+import com.flaviolcord.user.registry.domain.model.User;
+import com.flaviolcord.user.registry.infrastructure.repository.UserRepository;
+import com.flaviolcord.user.registry.application.validator.UserValidator;
 import lombok.AllArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -46,13 +46,6 @@ public class UserService {
         return userRepository.findById(id)
                 .orElseThrow(() -> {
                     return new UserNotFoundException("User not found with ID: " + id);
-                });
-    }
-
-    public User getUserByUsername(String username) {
-        return userRepository.findByUsername(username)
-                .orElseThrow(() -> {
-                    return new UserNotFoundException("User not found with username: " + username);
                 });
     }
 }

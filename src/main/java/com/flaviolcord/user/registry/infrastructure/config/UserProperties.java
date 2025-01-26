@@ -1,4 +1,4 @@
-package com.flaviolcord.user.registry.api.config;
+package com.flaviolcord.user.registry.infrastructure.config;
 
 import lombok.Getter;
 import lombok.Setter;

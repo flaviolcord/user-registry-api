@@ -1,4 +1,4 @@
-package com.flaviolcord.user.registry.api.exception;
+package com.flaviolcord.user.registry.infrastructure.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

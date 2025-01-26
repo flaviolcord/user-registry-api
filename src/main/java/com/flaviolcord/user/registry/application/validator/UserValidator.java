@@ -1,7 +1,7 @@
-package com.flaviolcord.user.registry.api.validator;
+package com.flaviolcord.user.registry.application.validator;
 
-import com.flaviolcord.user.registry.api.dto.UserDTO;
-import com.flaviolcord.user.registry.api.exception.ValidationException;
+import com.flaviolcord.user.registry.infrastructure.dto.UserDTO;
+import com.flaviolcord.user.registry.infrastructure.exception.ValidationException;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;

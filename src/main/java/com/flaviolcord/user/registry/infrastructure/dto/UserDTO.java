@@ -1,41 +1,33 @@
-package com.flaviolcord.user.registry.api.model;
+package com.flaviolcord.user.registry.infrastructure.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Past;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.*;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
-@Entity
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor
-public class User {
+@Getter @Setter @NoArgsConstructor
+public class UserDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @NotNull(message = "Username is required")
     @Size(min = 3, max = 50, message = "Username must be between 3 and 50 characters")
     private String username;
 
-    @NotNull
+    @NotNull(message = "Birthdate is required")
     @Past(message = "Birthdate must be in the past")
     private LocalDate birthdate;
 
-    @NotNull
+    @NotNull(message = "Country of residence is required")
     @Pattern(regexp = "France", message = "Only French residents are allowed")
+    @JsonProperty("country_of_residence")
     private String countryOfResidence;
 
     @Size(min = 10, max = 15, message = "Phone number must be between 10 and 15 characters")
+    @JsonProperty("phone_number")
     private String phoneNumber; // Optional
 
     @Pattern(regexp = "Male|Female|Other", message = "Gender must be Male, Female, or Other")

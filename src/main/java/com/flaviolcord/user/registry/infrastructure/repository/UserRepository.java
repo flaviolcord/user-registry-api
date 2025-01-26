@@ -1,6 +1,6 @@
-package com.flaviolcord.user.registry.api.repository;
+package com.flaviolcord.user.registry.infrastructure.repository;
 
-import com.flaviolcord.user.registry.api.model.User;
+import com.flaviolcord.user.registry.domain.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

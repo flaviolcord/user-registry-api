@@ -1,9 +1,9 @@
-package com.flaviolcord.user.registry.api.controller;
+package com.flaviolcord.user.registry.infrastructure.controller;
 
-import com.flaviolcord.user.registry.api.dto.UserDTO;
-import com.flaviolcord.user.registry.api.mapper.UserMapper;
-import com.flaviolcord.user.registry.api.model.User;
-import com.flaviolcord.user.registry.api.service.UserService;
+import com.flaviolcord.user.registry.infrastructure.dto.UserDTO;
+import com.flaviolcord.user.registry.infrastructure.mapper.UserMapper;
+import com.flaviolcord.user.registry.domain.model.User;
+import com.flaviolcord.user.registry.application.service.UserService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/v1/users")
 @AllArgsConstructor
 public class UserController {
 
@@ -28,12 +28,6 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<UserDTO> getUserById(@PathVariable Long id) {
         User user = userService.getUserById(id);
-        return ResponseEntity.ok(userMapper.toDTO(user));
-    }
-
-    @GetMapping("/username/{username}")
-    public ResponseEntity<UserDTO> getUserByUsername(@PathVariable String username) {
-        User user = userService.getUserByUsername(username);
         return ResponseEntity.ok(userMapper.toDTO(user));
     }
 }
