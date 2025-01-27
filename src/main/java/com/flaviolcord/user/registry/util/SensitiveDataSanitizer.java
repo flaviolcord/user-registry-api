@@ -44,10 +44,15 @@ public class SensitiveDataSanitizer {
     }
 
     private static String sanitizeString(String str) {
+        if ("Male".equalsIgnoreCase(str) || "Female".equalsIgnoreCase(str) || "Other".equalsIgnoreCase(str)) {
+            return "***";
+        }
+
         if (str.matches("\\d{10,}")) {
             return maskPhoneNumber(str);
         }
-        return str.length() > 3 ? str.substring(0, 3) + "***" : "***";
+
+        return str.length() > 2 ? str.substring(0, 2) + "****" : "****";
     }
 
     private static String maskPhoneNumber(String phoneNumber) {

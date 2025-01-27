@@ -22,7 +22,6 @@ public class UserDTO {
     private LocalDate birthdate;
 
     @NotNull(message = "Country of residence is required")
-    @Pattern(regexp = "France", message = "Only French residents are allowed")
     @JsonProperty("country_of_residence")
     private String countryOfResidence;
 
