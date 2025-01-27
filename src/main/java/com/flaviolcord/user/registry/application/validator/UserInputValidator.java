@@ -9,7 +9,6 @@ import java.time.LocalDate;
 @Component
 public class UserInputValidator {
 
-    // Constants for repeated values
     private static final String GENDER_PATTERN = "Male|Female|Other";
     private static final String COUNTRY_OF_RESIDENCE = "France";
 
