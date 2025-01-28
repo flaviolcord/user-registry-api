@@ -9,12 +9,22 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+/**
+ * Implementation of the UserRepository interface.
+ * Bridges the domain model with JPA persistence using mappers.
+ */
 @Repository
 @RequiredArgsConstructor
 public class UserRepositoryImpl implements UserRepository {
     private final JpaUserRepository jpaUserRepository;
     private final UserMapper userMapper;
 
+    /**
+     * {@inheritDoc}
+     *
+     * Maps the domain User to a UserEntity, persists it,
+     * and maps the result back to a domain User.
+     */
     @Override
     public User save(User user) {
         UserEntity entity = userMapper.toEntity(user);
@@ -23,12 +33,22 @@ public class UserRepositoryImpl implements UserRepository {
         return userMapper.toDomainModel(savedEntity);
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * Retrieves a UserEntity by ID and maps it to a domain User if found.
+     */
     @Override
     public Optional<User> findById(Long id) {
         return jpaUserRepository.findById(id)
                 .map(userMapper::toDomainModel);
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * Retrieves a UserEntity by username and maps it to a domain User if found.
+     */
     @Override
     public Optional<User> findByUsername(String username) {
         return jpaUserRepository.findByUsername(username)
