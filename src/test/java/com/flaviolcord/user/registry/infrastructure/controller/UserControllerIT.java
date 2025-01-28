@@ -1,11 +1,10 @@
-package com.flaviolcord.user.registry.integration;
+package com.flaviolcord.user.registry.infrastructure.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.flaviolcord.user.registry.UserRegistryApplication;
 import com.flaviolcord.user.registry.domain.model.User;
 import com.flaviolcord.user.registry.domain.repository.UserRepository;
 import com.flaviolcord.user.registry.infrastructure.dto.UserDTO;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
