@@ -1,6 +1,7 @@
 spring:
   application:
     name: User Registry (Development)
+    version: @project.version@
 
   datasource:
     url: jdbc:h2:mem:devdb;DB_CLOSE_DELAY=-1

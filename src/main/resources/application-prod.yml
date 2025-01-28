@@ -1,6 +1,7 @@
 spring:
   application:
     name: User Registry (Production)
+    version: @project.version@
 
 #  datasource:
 #    url: jdbc:mysql://prod-db-server:3306/user_registry
