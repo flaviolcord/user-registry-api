@@ -23,7 +23,7 @@ public class LoggingAspect {
     public Object logAroundMethod(ProceedingJoinPoint joinPoint) throws Throwable {
         long startTime = System.currentTimeMillis();
 
-        logger.info("Entering method: {} with arguments: {}",
+        logger.debug("Entering method: {} with arguments: {}",
                 joinPoint.getSignature(),
                 SensitiveDataSanitizer.sanitizeArgs(joinPoint.getArgs())
         );
@@ -38,7 +38,7 @@ public class LoggingAspect {
 
         long duration = System.currentTimeMillis() - startTime;
 
-        logger.info("Exiting method: {} with result: {} (Execution time: {} ms)",
+        logger.debug("Exiting method: {} with result: {} (Execution time: {} ms)",
                 joinPoint.getSignature(),
                 SensitiveDataSanitizer.sanitizeArg(result),
                 duration

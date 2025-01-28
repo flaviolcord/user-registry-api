@@ -79,6 +79,7 @@
 
 	<build>
 		<plugins>
+			<!-- Existing Surefire configuration with added exclusion for IT tests -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
@@ -87,8 +88,39 @@
 						-javaagent:${settings.localRepository}/org/mockito/mockito-core/${mockito.version}/mockito-core-${mockito.version}.jar
 						-Xshare:off
 					</argLine>
+					<includes>
+						<include>**/*Test.java</include>
+					</includes>
+					<excludes>
+						<exclude>**/*IT.java</exclude>
+					</excludes>
 				</configuration>
 			</plugin>
+
+			<!-- New Failsafe plugin for IT tests -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<includes>
+						<include>**/*IT.java</include>
+					</includes>
+					<argLine>
+						-javaagent:${settings.localRepository}/org/mockito/mockito-core/${mockito.version}/mockito-core-${mockito.version}.jar
+						-Xshare:off
+					</argLine>
+				</configuration>
+			</plugin>
+
+			<!-- Your existing compiler plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -109,6 +141,8 @@
 					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
+
+			<!-- Your existing Spring Boot plugin -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>

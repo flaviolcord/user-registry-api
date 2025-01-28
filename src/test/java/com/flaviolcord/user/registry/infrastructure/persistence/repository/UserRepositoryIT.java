@@ -39,6 +39,9 @@ class UserRepositoryIT {
 
     @BeforeEach
     void setUp() {
+        jpaUserRepository.deleteAll();
+        jpaUserRepository.flush();
+
         validUser = new User(
                 null,
                 "testuser",
