@@ -1,0 +1,14 @@
+com.flaviolcord.user.registry
+com.flaviolcord.user.registry.application.service
+com.flaviolcord.user.registry.application.usecase
+com.flaviolcord.user.registry.application.validator
+com.flaviolcord.user.registry.domain.model
+com.flaviolcord.user.registry.domain.repository
+com.flaviolcord.user.registry.infrastructure.config
+com.flaviolcord.user.registry.infrastructure.controller
+com.flaviolcord.user.registry.infrastructure.dto
+com.flaviolcord.user.registry.infrastructure.exception
+com.flaviolcord.user.registry.infrastructure.mapper
+com.flaviolcord.user.registry.infrastructure.persistence
+com.flaviolcord.user.registry.infrastructure.persistence.repository
+com.flaviolcord.user.registry.util
