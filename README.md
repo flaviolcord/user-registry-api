@@ -133,7 +133,10 @@ Access the report at: `target/site/jacoco/index.html`
 
 ## Code Quality
 
-### Generate JavaDoc
+### JavaDoc
+The latest JavaDoc can be found [here](https://flaviolcord.github.io/user-registry/).
+
+### Generate JavaDoc Locally
 ```bash
 mvn javadoc:javadoc
 ```

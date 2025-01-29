@@ -206,7 +206,7 @@
           }
         },
         {
-          "name": "Register User - Future Birthdate",
+          "name": "Register User - Invalid Birthdate",
           "request": {
             "method": "POST",
             "header": [
