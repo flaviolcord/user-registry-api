@@ -14,7 +14,7 @@
 	<!-- Project Information -->
 	<groupId>com.flaviolcord</groupId>
 	<artifactId>user-registry</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>User Registry</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -35,7 +35,6 @@
 		<maven-failsafe-plugin.version>3.2.3</maven-failsafe-plugin.version>
 		<maven-javadoc-plugin.version>3.6.3</maven-javadoc-plugin.version>
 		<sonar-maven-plugin.version>3.10.0.2594</sonar-maven-plugin.version>
-		<maven-checkstyle-plugin.version>3.3.1</maven-checkstyle-plugin.version>
 
 		<!-- Sonar Properties -->
 		<sonar.coverage.jacoco.xmlReportPaths>${project.build.directory}/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
@@ -128,20 +127,6 @@
 						</path>
 					</annotationProcessorPaths>
 				</configuration>
-			</plugin>
-
-			<!-- Documentation -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>${maven-javadoc-plugin.version}</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>javadoc</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 
 			<!-- Testing Plugins -->
@@ -249,13 +234,28 @@
 				<version>${sonar-maven-plugin.version}</version>
 			</plugin>
 
+			<!-- Documentation Plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-				<version>${maven-checkstyle-plugin.version}</version>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>${maven-javadoc-plugin.version}</version>
 				<configuration>
-					<configLocation>checkstyle.xml</configLocation>
+					<show>private</show> <!-- Show all classes and members -->
+					<nohelp>true</nohelp> <!-- Don't generate help -->
+					<encoding>UTF-8</encoding>
+					<charset>UTF-8</charset>
+					<docencoding>UTF-8</docencoding>
+					<source>${java.version}</source>
+					<additionalJOption>-Xdoclint:none</additionalJOption> <!-- Less strict validation -->
 				</configuration>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
