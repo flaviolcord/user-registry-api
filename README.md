@@ -62,8 +62,8 @@ The application uses H2 in-memory database for development and testing.
     "username": "johndoe",
     "birthdate": "1990-01-01",
     "country_of_residence": "France",
-    "phone_number": "1234567890",      // Optional
-    "gender": "Male"                   // Optional (Male/Female/Other)
+    "phone_number": "(optional: 1234567890)",
+    "gender": "(optional: Male/Female/Other)"
 }
 ```
 - **Response** (201 Created):
@@ -134,7 +134,7 @@ Access the report at: `target/site/jacoco/index.html`
 ## Code Quality
 
 ### JavaDoc
-The latest JavaDoc can be found [here](https://flaviolcord.github.io/user-registry/).
+The latest JavaDoc can be found [here](https://flaviolcord.github.io/user-registry-api/).
 
 ### Generate JavaDoc Locally
 ```bash
